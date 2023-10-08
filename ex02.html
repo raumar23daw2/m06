@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de Taula</title>
+    <style type="text/css">
+        #taula {
+            border-style: solid; width: 100%;
+        }
+        #taula th {
+            border-style: solid;
+        }
+
+    </style>
+</head>
+<body>
+    <label for="numFilas">Entra la quantitat de països a visualitzar: </label>
+    <input type="number" id="numFilas" min="1" max="10">
+    <h1>Taula</h1>
+
+    <table id="taula">
+        <thead>
+            <tr>
+                <th>Capital</th>
+                <th>País</th>
+                <th>Continent</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+    <button onclick="generarTaula()">Generar Taula</button>
+    <button onclick="borrarTaula()">Borrar Taula</button>
+
+    <script>
+        const ciutats = [
+            "Paris", "Londres", "Roma", "Berlin", "Copenhaguen", "Viena", "Lisboa", "Washington_DC",
+            "Ottawa", "L'Havana", "Santiago", "Lima", "Montevideo", "Canberra", "Wellington",
+            "Monròvia", "Abuja", "Dakar", "Tunis", "Tokyo", "Seül", "Beijing", "Taipei"
+        ];
+
+        const paisos = [
+            "França", "UK", "Itàlia", "Alemanya", "Dinamarca", "Àustria", "Portugal",
+            "USA", "Canada", "Cuba", "Xile", "Perú", "Uruguay", "Austràlia", "Nova_ Zelanda",
+            "Libèria", "Nigèria", "Senegal", "Tunísia", "Japó", "Corea_Sud", "Xina", "Taiwan"
+        ];
+
+        const continents = [
+            "Europa", "Europa", "Europa", "Europa", "Europa", "Europa", "Europa", "Amèrica", "Amèrica",
+            "Amèrica", "Amèrica", "Amèrica", "Amèrica", "Oceania", "Oceania", "Àfrica", "Àfrica", "Àfrica",
+            "Àfrica", "Àsia", "Àsia", "Àsia", "Àsia"
+        ];
+
+        function generarTaula() {
+            let numFilasInput = document.getElementById("numFilas");
+            let numFilas = parseInt(numFilasInput.value);
+            let taulaBody = document.querySelector("#taula tbody");
+
+            taulaBody.innerHTML = "";
+
+            for (let i = 0; i < numFilas; i++) {
+                random = Math.floor(Math.random() * ciutats.length);
+                let ciutat = ciutats[random];
+                let pais = paisos[random];
+                let continent = continents[random];
+
+                let fila = document.createElement("tr");
+                let columnaCiutat = document.createElement("td");
+                let columnaPais = document.createElement("td");
+                let columnaContinent = document.createElement("td");
+
+                columnaCiutat.textContent = ciutat;
+                columnaPais.textContent = pais;
+                columnaContinent.textContent = continent;
+
+                fila.appendChild(columnaCiutat);
+                fila.appendChild(columnaPais);
+                fila.appendChild(columnaContinent);
+
+                taulaBody.appendChild(fila);
+            }
+        }
+        function borrarTaula() {
+            let numFilasInput = document.getElementById("numFilas");
+            let numFilas = parseInt(numFilasInput.value);
+            let taulaBody = document.querySelector("#taula tbody");
+            taulaBody.innerHTML = "";
+        }
+    </script>
+</body>
+</html>
